@@ -12,7 +12,7 @@ export class PeopleSettingTab extends PluginSettingTab {
 	display(): void {
 		const { containerEl } = this;
 		containerEl.empty();
-		containerEl.createEl('h2', { text: 'People Plugin' });
+		new Setting(containerEl).setName('People plugin').setHeading();
 
 		new Setting(containerEl)
 			.setName('People folder')

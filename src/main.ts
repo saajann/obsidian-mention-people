@@ -18,7 +18,12 @@ export default class PeoplePlugin extends Plugin {
 	onunload() { }
 
 	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		const loadedData: unknown = await this.loadData();
+		const loadedSettings =
+			loadedData && typeof loadedData === 'object'
+				? (loadedData as Partial<PeoplePluginSettings>)
+				: {};
+		this.settings = { ...DEFAULT_SETTINGS, ...loadedSettings };
 	}
 
 	async saveSettings() {

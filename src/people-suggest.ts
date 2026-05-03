@@ -24,7 +24,7 @@ export class PeopleSuggest extends EditorSuggest<string> {
         if (!line) return null;
         const lineUpToCursor = line.substring(0, cursor.ch);
         const match = QUERY_RE.exec(lineUpToCursor);
-        if (!match) return null;
+        if (!match || !match[1]) return null;
         return {
             start: { line: cursor.line, ch: lineUpToCursor.lastIndexOf('@') },
             end: cursor,
@@ -60,17 +60,18 @@ export class PeopleSuggest extends EditorSuggest<string> {
         });
     }
 
-    async selectSuggestion(value: string, _evt: MouseEvent | KeyboardEvent): Promise<void> {
+    selectSuggestion(value: string, _evt: MouseEvent | KeyboardEvent): void {
+        void this.handleSuggestion(value);
+    }
+
+    private async handleSuggestion(value: string): Promise<void> {
         const { context } = this;
         if (!context) return;
         let name: string;
         if (value.startsWith('+ Create "')) {
-            if (value.startsWith('+ Create "')) {
-                const match = value.match(/\+ Create "(.+)"/);
-                if (!match) return;
-                name = match[1];
-                await this.plugin.peopleManager.createPerson(name);
-            }
+            const match = value.match(/\+ Create "(.+)"/);
+            if (!match || !match[1]) return;
+            name = match[1];
             await this.plugin.peopleManager.createPerson(name);
         } else {
             name = value;
