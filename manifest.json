@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-mention-people",
 	"name": "Mention People",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "Type @ in any note to mention a person",
 	"author": "Saajan Saini",
