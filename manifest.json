@@ -1,9 +1,9 @@
 {
-	"id": "obsidian-mention-people",
+	"id": "mention-people",
 	"name": "Mention People",
 	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
-	"description": "Type @ in any note to mention a person",
+	"description": "Type @ in any note to mention a person.",
 	"author": "Saajan Saini",
 	"authorUrl": "https://linkedin.com/in/saajan-saini",
 	"fundingUrl": "",
